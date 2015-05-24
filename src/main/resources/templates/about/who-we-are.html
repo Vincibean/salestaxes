@@ -1,0 +1,94 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>FooBar Market</title>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="css/my-template.css" rel="stylesheet" />
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<span class="navbar-brand">FooBar Market</span>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a th:href="@{/}">Home</a></li>
+					<li><a href="#products">Our Products</a></li>
+					<li class="active"><a th:href="@{/about}">About</a></li>
+					<li><a href="/team">Team</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+
+	<div class="container">
+
+		<div class="jumbotron">
+			<h2>Who We Are</h2>
+			<p id="smalltext">FooBar Market is the largest Poiuyt in human
+				history. From 1432, people at FooBar are totally committed to
+				helping mankind buy, sell, and share Poiuyts.</p>
+			<h2>How It All Began</h2>
+			<p id="smalltext">
+				It all began in 1432, when Alfred Foo van Bar felt compelled to
+				create something no one ever dared before: creating a Poiuyt market.
+				<br /> While first looked down by all of his colleagues, he
+				strongly believed in his commercial idea, and in June 1432 he
+				resigned from his dog-sitting career to open a place where Poiuyts
+				could flow freely. <br /> He named the place after his daughter,
+				FooBar Foo van Bar.
+			</p>
+			<h2>Beginning and First Skepticism</h2>
+			<p id="smalltext">While today Alfred Foo van Bar is
+				universally considered a genius and the greatest man who ever lived
+				(no, we are not telling you this because we were paid shamefully
+				much, we really mean it!), FooBar Market was first regarded with
+				skepticism. However, thanks to his brilliant mind and the constant
+				support of his family, Alfred Foo van Bar kept on pursuing his drean
+				untill the day of his death, when FooBar Market had already become a
+				fearsome company.</p>
+			<h2>New Guide, New Successes</h2>
+			<p id="smalltext">After his father's death, FooBar Foo van Bar followed in his
+				father's footsteps, increasing the already enormous family wealth.</p>
+		</div>
+
+	</div>
+	<!-- /.container -->
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+</body>
+</html>
