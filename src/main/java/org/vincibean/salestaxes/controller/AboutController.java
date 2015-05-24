@@ -10,5 +10,10 @@ class AboutController {
 	public String about() {
 		return "about/who-we-are";
 	}
+	
+	@RequestMapping("/team")
+	public String team(){
+		return "about/team";
+	}
 
 }
