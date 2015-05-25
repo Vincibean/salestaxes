@@ -19,7 +19,9 @@ package org.vincibean.salestaxes.configuration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * A configuration class that declares one or more @Bean methods for this application and also 
@@ -30,6 +32,8 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @ComponentScan("org.vincibean.salestaxes")
+@EntityScan(basePackages="org.vincibean.salestaxes.domain")
+@EnableJpaRepositories(basePackages="org.vincibean.salestaxes.repository")
 public class SalesTaxesApplication {
 
 	/**
@@ -37,7 +41,7 @@ public class SalesTaxesApplication {
 	 * @return a {@link String} representing the name of the index HTML page of 
 	 * FooBar market.
 	 */
-    public static void main(String[] args) {
-        SpringApplication.run(SalesTaxesApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(SalesTaxesApplication.class, args);
+	}
 }
