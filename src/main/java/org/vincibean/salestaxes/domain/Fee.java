@@ -19,6 +19,16 @@ package org.vincibean.salestaxes.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 import lombok.Data;
 
 /**
@@ -29,6 +39,8 @@ import lombok.Data;
  *
  */
 @Data
+@Entity
+@Table(name="FEE")
 public class Fee implements Serializable {
 
 	private static final long serialVersionUID = 2654098530298345255L;
@@ -36,21 +48,30 @@ public class Fee implements Serializable {
 	/**
 	 * The unique identifier for this Fee.
 	 */
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 
 	/**
 	 * The name of this Fee.
 	 */
+	@Column(name="NAME")
+	@NotNull
 	private String name;
 
 	/**
 	 * A description for this Fee.
 	 */
+	@Column(name="DESCRIPTION")
 	private String description;
 
 	/**
 	 * The value that this Fee has.
 	 */
-	private int value;
+	@Column(name="FEE_VALUE")
+	@Min(-100)
+	@Max(100)
+	@NotNull
+	private float value;
 
 }
