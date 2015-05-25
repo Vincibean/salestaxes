@@ -61,7 +61,7 @@ public class HomeControllerTest {
 	 * Requesting with "/".
 	 */
 	@Test
-	public void getIndexSlash() {
+	public void getIndexSlashTest() {
 		try {
 			mockMvc.perform(MockMvcRequestBuilders.get("/"))
 			.andExpect(MockMvcResultMatchers.status().isOk())
@@ -77,7 +77,7 @@ public class HomeControllerTest {
 	 * Requesting with "/".
 	 */
 	@Test
-	public void postIndexSlash() {
+	public void postIndexSlashTest() {
 		try {
 			mockMvc.perform(MockMvcRequestBuilders.get("/"))
 			.andExpect(MockMvcResultMatchers.status().isOk())
@@ -93,7 +93,7 @@ public class HomeControllerTest {
 	 * Requesting with "/".
 	 */
 	@Test
-	public void deleteIndexSlash() {
+	public void deleteIndexSlashTest() {
 		try {
 			mockMvc.perform(MockMvcRequestBuilders.delete("/"))
 			.andExpect(MockMvcResultMatchers.status().isOk())
