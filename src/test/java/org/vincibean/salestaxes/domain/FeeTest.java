@@ -47,9 +47,9 @@ public class FeeTest {
 	 */
 	@Test
 	public void testId(){
-		int id = Integer.MAX_VALUE;
+		long id = Long.MAX_VALUE;
 		fee.setId(id);
-		Assert.assertEquals(id, fee.getId());
+		Assert.assertEquals(id, fee.getId().longValue());
 	}
 	
 	/**
@@ -77,9 +77,9 @@ public class FeeTest {
 	 */
 	@Test
 	public void testValue(){
-		int value = 45;
+		float value = 45f;
 		fee.setValue(value);
-		Assert.assertEquals(value, fee.getValue());
+		Assert.assertEquals(value, fee.getValue(), 0.0001);
 	}
 	
 }
