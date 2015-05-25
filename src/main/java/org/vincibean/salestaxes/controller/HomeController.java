@@ -31,14 +31,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-class HomeController {
+public class HomeController {
 
 	/**
 	 * Get the web page describing the index page of FooBar market.
 	 * @return a {@link String} representing the name of the HTML index page describing 
 	 * the FooBar market.
 	 */
-	@RequestMapping(value={"", "/"})
+	@RequestMapping("/")
 	public String index() {
 		return "index";
 	}
