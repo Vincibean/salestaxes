@@ -65,11 +65,11 @@ public class FeeRepositoryTest {
 	 */
 	@Test(expected=ConstraintViolationException.class)
 	public void testSaveInvalidFeeHigh(){
-		Fee validFee = new Fee();
-		validFee.setName("JUnit invalid Fee");
-		validFee.setDescription("A mock Fee object for JUnit tests");
-		validFee.setValue(134567892.7f);
-		Assert.assertNotNull(feeRepository.save(validFee).getId());
+		Fee invalidFee = new Fee();
+		invalidFee.setName("JUnit invalid Fee");
+		invalidFee.setDescription("A mock Fee object for JUnit tests");
+		invalidFee.setValue(134567892.7f);
+		Assert.assertNotNull(feeRepository.save(invalidFee).getId());
 	}
 	
 	/**
@@ -78,11 +78,24 @@ public class FeeRepositoryTest {
 	 */
 	@Test(expected=ConstraintViolationException.class)
 	public void testSaveInvalidFeeLow(){
-		Fee validFee = new Fee();
-		validFee.setName("JUnit invalid Fee");
-		validFee.setDescription("A mock Fee object for JUnit tests");
-		validFee.setValue(-134567892.7f);
-		Assert.assertNotNull(feeRepository.save(validFee).getId());
+		Fee invalidFee = new Fee();
+		invalidFee.setName("JUnit invalid Fee");
+		invalidFee.setDescription("A mock Fee object for JUnit tests");
+		invalidFee.setValue(-134567892.7f);
+		Assert.assertNotNull(feeRepository.save(invalidFee).getId());
+	}
+	
+	/**
+	 * Test that saving an invalid {@link Fee} object (null name) will 
+	 * will throw a {@link ConstraintViolationException}.
+	 */
+	@Test(expected=ConstraintViolationException.class)
+	public void testSaveInvalidFeeNullName(){
+		Fee invalidFee = new Fee();
+		invalidFee.setName(null);
+		invalidFee.setDescription("A mock Fee object for JUnit tests");
+		invalidFee.setValue(12.7f);
+		Assert.assertNotNull(feeRepository.save(invalidFee).getId());
 	}
 
 }
