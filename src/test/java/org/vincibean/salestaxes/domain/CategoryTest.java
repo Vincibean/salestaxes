@@ -77,7 +77,7 @@ public class CategoryTest {
 	}
 
 	/**
-	 * Test that setFee()/getFee() will behave consistently. 
+	 * Test that setFeeList()/getFeeList() will behave consistently. 
 	 */
 	@Test
 	public void testFee(){
