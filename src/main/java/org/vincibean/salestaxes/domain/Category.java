@@ -18,6 +18,7 @@
 package org.vincibean.salestaxes.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,7 +27,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -44,33 +46,40 @@ import lombok.Data;
 @Table(name="CATEGORY")
 public class Category implements Serializable {
 
-	private static final long serialVersionUID = 3435562823660558022L;
+	private static final long serialVersionUID = -8744401854480574688L;
 
 	/**
-	 * The unique identifier for this {@link Category}.
+	 * The unique identifier for this Category.
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
 	/**
-	 * The name of this {@link Category}.
+	 * The name of this Category.
 	 */
 	@Column(name="NAME")
 	@NotNull
 	private String name;
 
 	/**
-	 * A description for this {@link Category}.
+	 * A description for this Category.
 	 */
 	@Column(name="DESCRIPTION")
 	private String description;
 
 	/**
-	 * The {@link Fee} associated to this {@link Category}.
+	 * The {@link List} of {@link Fee}s associated to this Category.
 	 */
-	@OneToOne (cascade=CascadeType.ALL)
-	@JoinColumn(name="FEE")
-	private Fee fee;
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "FEE_CATEGORY",
+	joinColumns = {
+			@JoinColumn(name = "CATEGORY_ID", nullable = false) 
+	}, 
+	inverseJoinColumns = { 
+			@JoinColumn(name = "FEE_ID", nullable = false) 
+	} 
+			)
+	private List<Fee> feeList;
 
 }

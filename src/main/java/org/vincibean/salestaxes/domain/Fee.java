@@ -18,12 +18,17 @@
 package org.vincibean.salestaxes.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -43,7 +48,7 @@ import lombok.Data;
 @Table(name="FEE")
 public class Fee implements Serializable {
 
-	private static final long serialVersionUID = 2654098530298345255L;
+	private static final long serialVersionUID = -4237403569609304833L;
 
 	/**
 	 * The unique identifier for this Fee.
@@ -73,5 +78,19 @@ public class Fee implements Serializable {
 	@Max(100)
 	@NotNull
 	private float value;
+
+	/**
+	 * The {@link List} of {@link Category} objects associated to this Fee.
+	 */
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "FEE_CATEGORY",
+	joinColumns = {
+			@JoinColumn(name = "FEE_ID", nullable = false) 
+	}, 
+	inverseJoinColumns = { 
+			@JoinColumn(name = "CATEGORY_ID", nullable = false) 
+	} 
+			)
+	private List<Category> categoryList;
 
 }
