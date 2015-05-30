@@ -4,14 +4,23 @@
 <body>
 	<div th:include="fragment/common :: header"></div>
 	<div class="container">
-		<div class="jumbotron">
-			<h2>Choose a Category</h2>
-			<ul>
-				<li th:each="category : ${categories}"><a
-					href="#"
-					th:text="${category.name}"></a></li>
-			</ul>
+		<div class="row row-offcanvas row-offcanvas-right">
+			<h1>Choose a Category</h1>
+			<div class="row">
+				<div th:each="category : ${categories}" class="col-xs-6 col-lg-4">
+					<h2 th:text="${category.name}">Heading</h2>
+					<p th:text="${category.description}">Description</p>
+					<p>
+						<a class="btn btn-default"
+							href="#"
+							role="button">View details &raquo;</a>
+					</p>
+				</div>
+				<!--/.col-xs-6.col-lg-4-->
+			</div>
+			<!--/row-->
 		</div>
+		<!--/.col-xs-12.col-sm-9-->
 	</div>
 	<!-- /.container -->
 
