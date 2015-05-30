@@ -41,5 +41,13 @@ public interface CategoryService {
 	 * @return
 	 */
 	Category save(Category category);
+
+	/**
+	 * Given a category ID, retrieve the corresponding {@link Category}.
+	 * @param categoryId a {@link Long} representing the ID of the {@link Category} 
+	 * you are looking for
+	 * @return the {@link Category} the given ID corresponds to. 
+	 */
+	Category findCategoryById(long categoryId);
 	
 }

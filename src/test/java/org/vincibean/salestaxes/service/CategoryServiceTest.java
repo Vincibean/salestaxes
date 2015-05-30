@@ -42,14 +42,14 @@ import com.google.common.collect.FluentIterable;
 @SpringApplicationConfiguration(classes = SalesTaxesApplication.class)
 @WebAppConfiguration
 public class CategoryServiceTest {
-	
+
 	/**
 	 * Data objects that will be used in test methods.
 	 */
 
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	/**
 	 * Test that method save() will not throw any Exception, that it will return a not null Category
 	 * and that the saved Category Id (which is null, at first) is not null (i.e. it was populated by the service method.
@@ -61,7 +61,7 @@ public class CategoryServiceTest {
 		Assert.assertNotNull(savedCategory);
 		Assert.assertNotNull(savedCategory.getId());
 	}
-	
+
 	/**
 	 * Test that, once a valid Category is saved, method findAllCategories() will return a not null list of Categories.
 	 */
@@ -73,7 +73,28 @@ public class CategoryServiceTest {
 		Assert.assertNotNull(categories);
 		Assert.assertFalse(FluentIterable.from(categories).isEmpty());
 	}
-	
+
+	/**
+	 * Test that, once a valid Category is saved, method findCategoryById() will return 
+	 * the same Category(test by ID).
+	 */
+	@Test
+	public void testFindCategoryById(){
+		Category category = categoryService.save(createMockCategory());
+		Category foundCategory = categoryService.findCategoryById(category.getId());
+		Assert.assertNotNull(foundCategory);
+		Assert.assertEquals(category.getId(), foundCategory.getId());
+	}
+
+	/**
+	 * Test that method findCategoryById() will return a null object if a not existent ID 
+	 * (here an artificially high ID) is given.
+	 */
+	@Test
+	public void testFindCategoryByWrongId(){
+		Assert.assertNull(categoryService.findCategoryById(Long.MAX_VALUE));
+	}
+
 	/**
 	 * Factory method. Create a mock, valid {@link Category}.
 	 * @return a mock, valid {@link Category}.
@@ -85,17 +106,17 @@ public class CategoryServiceTest {
 		validCategory.setFeeList(Arrays.asList(createMockFee()));
 		return validCategory;
 	}
-	
+
 	/**
 	 * Factory method. Create a mock, valid {@link Fee}.
 	 * @return a mock, valid {@link Fee}.
 	 */
 	private Fee createMockFee(){
-		Fee validFee = new Fee();
-		validFee.setName("JUnit valid Fee");
-		validFee.setDescription("A mock Fee object for JUnit tests");
-		validFee.setValue(12.7f);
-		return validFee;
+		Fee mockFee = new Fee();
+		mockFee.setName("JUnit valid Fee");
+		mockFee.setDescription("A mock Fee object for JUnit tests");
+		mockFee.setValue(12.7f);
+		return mockFee;
 	}
-	
+
 }
