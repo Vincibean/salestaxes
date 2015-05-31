@@ -5,14 +5,14 @@
 	<div th:include="fragment/common :: header"></div>
 	<div class="container">
 		<div class="row row-offcanvas row-offcanvas-right">
-			<h1>Choose a Category</h1>
+			<h1>Here are our Poiuyts</h1>
 			<div class="row">
-				<div th:each="category : ${categories}" class="col-xs-6 col-lg-4">
-					<h2 th:text="${category.name}">Heading</h2>
-					<p th:text="${category.description}">Description</p>
+				<div th:each="poiuyt : ${poiuyts}" class="col-xs-6 col-lg-4">
+					<h2 th:text="${poiuyt.name}">Heading</h2>
+					<p th:text="${poiuyt.description}">Description</p>
 					<p>
 						<a class="btn btn-default"
-							href="#"
+							th:href="@{/market/poiuyts(poiuytId=${poiuyt.id})}"
 							role="button">View details &raquo;</a>
 					</p>
 				</div>
