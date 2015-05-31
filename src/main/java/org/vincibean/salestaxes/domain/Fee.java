@@ -77,7 +77,7 @@ public class Fee implements Serializable {
 	@Min(-100)
 	@Max(100)
 	@NotNull
-	private float value;
+	private double value;
 
 	/**
 	 * The {@link List} of {@link Category} objects associated to this Fee.
