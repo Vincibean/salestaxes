@@ -21,7 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.vincibean.salestaxes.service.CategoryService;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.vincibean.salestaxes.service.PoiuytService;
 
 /**
  * Controller interface representing a component that receives HttpServletRequest and 
@@ -38,12 +39,17 @@ import org.vincibean.salestaxes.service.CategoryService;
 public class MarketController {
 
 	@Autowired
-	private CategoryService categoryService;
-	
-	@RequestMapping("/categories")
-	public String categoriesList(Model model) {
-		model.addAttribute("categories", categoryService.findAllCategories());
-		return "market/categories_list";
+	private PoiuytService poiuytService;
+
+	/**
+	 * Get the web page describing the market page of FooBar market.
+	 * @return a {@link String} representing the name of the HTML market page describing 
+	 * the list of Poiuyt in the market.
+	 */
+	@RequestMapping(value = "/poiuyts", method = RequestMethod.GET)
+	public String poiuytList(Model model){
+		model.addAttribute("poiuyts", poiuytService.findAllPoiuyts());
+		return "market/poiuyt_list";
 	}
 
 }

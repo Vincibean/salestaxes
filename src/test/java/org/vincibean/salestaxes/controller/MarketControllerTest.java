@@ -32,7 +32,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.vincibean.salestaxes.configuration.SalesTaxesApplication;
 
 /**
- * JUnit class covering methods of class org.vincibean.salestaxes.controller.CategoryController
+ * JUnit class covering methods of class org.vincibean.salestaxes.controller.MarketController
  * 
  * @author Vincibean
  *
@@ -60,51 +60,17 @@ public class MarketControllerTest {
 	}
 
 	/**
-	 * Test that requesting the categories page will behave as intended (no Exception will be thrown).
+	 * Test that requesting the poiuyts page will behave as intended (no Exception will be thrown).
 	 * Get request.
 	 * Requesting with "/market/categories".
 	 */
 	@Test
-	public void getCategoriesTest() {
+	public void getPoiuytsTest() {
 		try {
-			mockMvc.perform(MockMvcRequestBuilders.get("/market/categories"))
-			.andExpect(MockMvcResultMatchers.model().attributeExists("categories"))
+			mockMvc.perform(MockMvcRequestBuilders.get("/market/poiuyts"))
+			.andExpect(MockMvcResultMatchers.model().attributeExists("poiuyts"))
 			.andExpect(MockMvcResultMatchers.status().isOk())
-			.andExpect(MockMvcResultMatchers.view().name("market/categories_list"));
-		} catch (Exception e) {
-			Assert.fail();
-		}
-	}
-	
-	/**
-	 * Test that requesting the categories page will behave as intended (no Exception will be thrown).
-	 * Post request.
-	 * Requesting with "/market/categories".
-	 */
-	@Test
-	public void postCategoriesTest() {
-		try {
-			mockMvc.perform(MockMvcRequestBuilders.get("/market/categories"))
-			.andExpect(MockMvcResultMatchers.model().attributeExists("categories"))
-			.andExpect(MockMvcResultMatchers.status().isOk())
-			.andExpect(MockMvcResultMatchers.view().name("market/categories_list"));
-		} catch (Exception e) {
-			Assert.fail();
-		}
-	}
-	
-	/**
-	 * Test that requesting the categories page will behave as intended (no Exception will be thrown).
-	 * Delete request.
-	 * Requesting with "/market/categories".
-	 */
-	@Test
-	public void deleteCategoriesTest() {
-		try {
-			mockMvc.perform(MockMvcRequestBuilders.delete("/market/categories"))
-			.andExpect(MockMvcResultMatchers.model().attributeExists("categories"))
-			.andExpect(MockMvcResultMatchers.status().isOk())
-			.andExpect(MockMvcResultMatchers.view().name("market/categories_list"));
+			.andExpect(MockMvcResultMatchers.view().name("market/poiuyt_list"));
 		} catch (Exception e) {
 			Assert.fail();
 		}
