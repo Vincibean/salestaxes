@@ -23,6 +23,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,7 +48,7 @@ import lombok.Data;
 @Table(name="POIUYT")
 public class Poiuyt implements Serializable {
 
-	private static final long serialVersionUID = -4038301102441428967L;
+	private static final long serialVersionUID = 7703410340104980116L;
 
 	/**
 	 * The unique identifier for this Poiuyt.
@@ -72,7 +73,7 @@ public class Poiuyt implements Serializable {
 	/**
 	 * The {@link Set} of {@link Category}s associated to this Poiuyt.
 	 */
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name = "CATEGORY_POIUYT",
 	joinColumns = {
 			@JoinColumn(name = "POIUYT_ID", nullable = false) 
