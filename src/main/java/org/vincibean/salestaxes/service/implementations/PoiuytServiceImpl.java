@@ -23,6 +23,8 @@ import org.vincibean.salestaxes.domain.Poiuyt;
 import org.vincibean.salestaxes.repository.PoiuytRepository;
 import org.vincibean.salestaxes.service.PoiuytService;
 
+import com.google.common.base.Optional;
+
 /**
  * Service class implementing methods for dealing with {@link Poiuyt} objects. 
  * 
@@ -38,6 +40,11 @@ public class PoiuytServiceImpl implements PoiuytService {
 	@Override
 	public Iterable<Poiuyt> findAllPoiuyts() {
 		return poiuytRepository.findAll();
+	}
+
+	@Override
+	public Optional<Poiuyt> findPoiuytById(final long poiuytId) {
+		return Optional.fromNullable(poiuytRepository.findOne(poiuytId));
 	}
 
 }

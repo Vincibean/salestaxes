@@ -33,6 +33,8 @@ import org.vincibean.salestaxes.domain.Fee;
 import org.vincibean.salestaxes.domain.Poiuyt;
 import org.vincibean.salestaxes.repository.PoiuytRepository;
 
+import com.google.common.base.Optional;
+
 /**
  * JUnit class covering methods of classes implementing org.vincibean.salestaxes.service.PoiuytService.
  * 
@@ -76,6 +78,27 @@ public class PoiuytServiceTest {
 		Iterable<Poiuyt> poiuyts = poiuytService.findAllPoiuyts();
 		Assert.assertNotNull(poiuyts);
 		Assert.assertFalse(poiuyts.iterator().hasNext());
+	}
+	
+	/**
+	 * Test that, if a Poiuyt is saved, given the corresponding ID, method 
+	 * findPoiuytById() will return that Poiuyt.
+	 */
+	@Test
+	public void testFindPoiuytById(){
+		Poiuyt savedPoiuyt = poiuytRepository.save(createMockPoiuyt());
+		Optional<Poiuyt> optionalPoiuyt = poiuytService.findPoiuytById(savedPoiuyt.getId());
+		Assert.assertTrue(optionalPoiuyt.isPresent());
+		Assert.assertEquals(savedPoiuyt.getId(), optionalPoiuyt.get().getId());
+	}
+	
+	/**
+	 * Test that, given a not existing ID, method findPoiuytById() will not return any Poiuyt.
+	 */
+	@Test
+	public void testFindPoiuytByNotExistingId(){
+		Optional<Poiuyt> optionalPoiuyt = poiuytService.findPoiuytById(Long.MAX_VALUE);
+		Assert.assertFalse(optionalPoiuyt.isPresent());
 	}
 
 	/**
