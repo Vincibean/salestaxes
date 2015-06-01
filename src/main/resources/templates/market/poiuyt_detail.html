@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head th:include="fragment/common :: head" />
+<body>
+	<div th:include="fragment/common :: header"></div>
+
+	<!-- Jumbotron -->
+	<div class="jumbotron">
+		<h1 th:text="${poiuyt.name}">The Poiuyt you seleted.</h1>
+		<p class="lead" th:text="${poiuyt.description}">The Poiuyt you
+			seleted.</p>
+		<p>
+			<a class="btn btn-lg btn-success" href="#" role="button">Buy it!</a>
+		</p>
+	</div>
+
+	<!-- Example row of columns -->
+	<div class="row">
+		<div class="col-lg-4 float-right"
+			th:each="category : ${poiuyt.categorySet}">
+			<h2 th:text="${category.name}">The category this Poiuyt belongs
+				to.</h2>
+			<p th:text="${category.description}">The descrition of the
+				category this Poiuyt belongs to.</p>
+			<div class="jumbotron">
+				<h1 th:text="${category.fee.name}">The Poiuyt you seleted.</h1>
+				<p class="lead" th:text="${category.fee.description}">The Poiuyt
+					you seleted.</p>
+				<p class="lead" th:text="${category.fee.value}">0</p>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script th:src="@{/js/bootstrap.js}"></script>
+</body>
+</html>
