@@ -18,7 +18,6 @@
 package org.vincibean.salestaxes.domain;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,8 +26,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -69,17 +67,10 @@ public class Category implements Serializable {
 	private String description;
 
 	/**
-	 * The {@link List} of {@link Fee}s associated to this Category.
-	 */
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(name = "FEE_CATEGORY",
-	joinColumns = {
-			@JoinColumn(name = "CATEGORY_ID", nullable = false) 
-	}, 
-	inverseJoinColumns = { 
-			@JoinColumn(name = "FEE_ID", nullable = false) 
-	} 
-			)
-	private List<Fee> feeList;
+	 * The {@link Fee} associated to this Category.
+	 */	
+	@OneToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name="FEE")
+	private Fee fee;
 
 }

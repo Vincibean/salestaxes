@@ -17,8 +17,6 @@
 
 package org.vincibean.salestaxes.service;
 
-import java.util.Arrays;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,7 +50,7 @@ public class CategoryServiceTest {
 
 	/**
 	 * Test that method save() will not throw any Exception, that it will return a not null Category
-	 * and that the saved Category Id (which is null, at first) is not null (i.e. it was populated by the service method.
+	 * and that the saved Category Id (which is null, at first) will not be null (i.e. it was populated by the service method).
 	 */
 	@Test
 	public void testSaveCategory(){
@@ -103,7 +101,7 @@ public class CategoryServiceTest {
 		Category validCategory = new Category();
 		validCategory.setName("JUnit valid Category");
 		validCategory.setDescription("A mock Category object for JUnit tests");
-		validCategory.setFeeList(Arrays.asList(createMockFee()));
+		validCategory.setFee(createMockFee());
 		return validCategory;
 	}
 

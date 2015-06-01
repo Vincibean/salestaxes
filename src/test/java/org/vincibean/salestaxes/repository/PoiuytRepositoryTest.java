@@ -86,7 +86,7 @@ public class PoiuytRepositoryTest {
 		invalidFee.setValue(134567892.7f);
 
 		Category validCategory = createMockCategory();
-		validCategory.setFeeList(Arrays.asList(invalidFee));
+		validCategory.setFee(invalidFee);
 
 		Poiuyt validPoiuyt = createMockPoiuyt();
 		validPoiuyt.setCategorySet(new HashSet<Category>(Arrays.asList(validCategory)));
@@ -104,7 +104,7 @@ public class PoiuytRepositoryTest {
 		invalidFee.setValue(-134567892.7f);
 
 		Category validCategory = createMockCategory();
-		validCategory.setFeeList(Arrays.asList(invalidFee));
+		validCategory.setFee(invalidFee);
 
 		Poiuyt validPoiuyt = createMockPoiuyt();
 		validPoiuyt.setCategorySet(new HashSet<Category>(Arrays.asList(validCategory)));
@@ -159,7 +159,7 @@ public class PoiuytRepositoryTest {
 		Category validCategory = new Category();
 		validCategory.setName("JUnit valid Category");
 		validCategory.setDescription("A mock Category object for JUnit tests");
-		validCategory.setFeeList(Arrays.asList(createMockFee()));
+		validCategory.setFee(createMockFee());
 		return validCategory;
 	}
 

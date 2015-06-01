@@ -17,8 +17,6 @@
 
 package org.vincibean.salestaxes.repository;
 
-import java.util.Arrays;
-
 import javax.validation.ConstraintViolationException;
 
 import org.junit.Assert;
@@ -63,11 +61,11 @@ public class CategoryRepositoryTest {
 		Category validCategory = new Category();
 		validCategory.setName("JUnit valid Category");
 		validCategory.setDescription("A mock Category object for JUnit tests");
-		validCategory.setFeeList(Arrays.asList(validFee));
+		validCategory.setFee(validFee);
 
 		Assert.assertNotNull(categoryRepository.save(validCategory).getId());
 	}
-	
+
 	/**
 	 * Test that a valid {@link Category} object will be saved without any error (Exception) occurring.
 	 */
@@ -77,23 +75,15 @@ public class CategoryRepositoryTest {
 		validFee.setName("JUnit valid Fee");
 		validFee.setDescription("A mock Fee object for JUnit tests");
 		validFee.setValue(12.7f);
-		
-		Fee validFee2 = new Fee();
-		validFee2.setName("Another JUnit valid Fee");
-		validFee2.setDescription("Another mock Fee object for JUnit tests");
-		validFee2.setValue(25.3f);
 
 		Category validCategory = new Category();
 		validCategory.setName("JUnit valid Category");
 		validCategory.setDescription("A mock Category object for JUnit tests");
-		validCategory.setFeeList(Arrays.asList(validFee, validFee2));
+		validCategory.setFee(validFee);
 
 		Category savedcategory = categoryRepository.save(validCategory);
-		
-		Assert.assertFalse(savedcategory.getFeeList().isEmpty());
-		Assert.assertEquals(2, savedcategory.getFeeList().size());
-		Assert.assertNotNull(savedcategory.getFeeList().get(0).getId());
-		Assert.assertNotNull(savedcategory.getFeeList().get(1).getId());
+
+		Assert.assertNotNull(savedcategory.getFee());
 	}
 
 	/**
@@ -110,7 +100,7 @@ public class CategoryRepositoryTest {
 		Category validCategory = new Category();
 		validCategory.setName("JUnit valid Category");
 		validCategory.setDescription("A mock Category object for JUnit tests");
-		validCategory.setFeeList(Arrays.asList(invalidFee));
+		validCategory.setFee(invalidFee);
 
 		categoryRepository.save(validCategory).getId();
 	}
@@ -129,7 +119,7 @@ public class CategoryRepositoryTest {
 		Category validCategory = new Category();
 		validCategory.setName("JUnit valid Category");
 		validCategory.setDescription("A mock Category object for JUnit tests");
-		validCategory.setFeeList(Arrays.asList(invalidFee));
+		validCategory.setFee(invalidFee);
 
 		categoryRepository.save(validCategory).getId();
 	}

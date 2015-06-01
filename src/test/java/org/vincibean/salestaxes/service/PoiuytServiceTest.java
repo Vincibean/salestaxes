@@ -121,7 +121,7 @@ public class PoiuytServiceTest {
 		Category validCategory = new Category();
 		validCategory.setName("JUnit valid Category");
 		validCategory.setDescription("A mock Category object for JUnit tests");
-		validCategory.setFeeList(Arrays.asList(createMockFee()));
+		validCategory.setFee(createMockFee());
 		return validCategory;
 	}
 

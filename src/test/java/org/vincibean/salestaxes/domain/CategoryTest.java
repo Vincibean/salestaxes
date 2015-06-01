@@ -17,8 +17,6 @@
 
 package org.vincibean.salestaxes.domain;
 
-import java.util.Arrays;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -77,13 +75,13 @@ public class CategoryTest {
 	}
 
 	/**
-	 * Test that setFeeList()/getFeeList() will behave consistently. 
+	 * Test that setFee()/getFee() will behave consistently. 
 	 */
 	@Test
 	public void testFee(){
 		Fee mockFee = Mockito.mock(Fee.class);
-		category.setFeeList(Arrays.asList(mockFee));
-		Assert.assertEquals(mockFee, category.getFeeList().get(0));
+		category.setFee(mockFee);
+		Assert.assertEquals(mockFee, category.getFee());
 	}
 
 }
