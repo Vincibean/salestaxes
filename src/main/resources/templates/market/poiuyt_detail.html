@@ -9,6 +9,7 @@
 		<h1 th:text="${poiuyt.name}">The Poiuyt you seleted.</h1>
 		<p class="lead" th:text="${poiuyt.description}">The Poiuyt you
 			seleted.</p>
+		<img alt="A generic Poiuyt image" th:src="@{/img/Poiuyt.png}" />
 		<p>
 			<a class="btn btn-lg btn-success" href="#" role="button">Buy it!</a>
 		</p>
@@ -16,17 +17,18 @@
 
 	<!-- Example row of columns -->
 	<div class="row">
-		<div class="col-lg-4 float-right"
-			th:each="category : ${poiuyt.categorySet}">
+		<div class="col-lg-4" th:each="category : ${poiuyt.categorySet}">
 			<h2 th:text="${category.name}">The category this Poiuyt belongs
 				to.</h2>
 			<p th:text="${category.description}">The descrition of the
 				category this Poiuyt belongs to.</p>
-			<div class="jumbotron">
+			<div th:if="${category.fee}" class="jumbotron">
 				<h1 th:text="${category.fee.name}">The Poiuyt you seleted.</h1>
 				<p class="lead" th:text="${category.fee.description}">The Poiuyt
-					you seleted.</p>
-				<p class="lead" th:text="${category.fee.value}">0</p>
+					you selected.</p>
+				<p class="lead">
+					<b>Fee amount (%) :</b> <span th:text="${category.fee.value}"></span>
+				</p>
 			</div>
 		</div>
 	</div>
