@@ -30,6 +30,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.vincibean.salestaxes.configuration.SalesTaxesApplication;
+import org.vincibean.salestaxes.service.PoiuytService;
 
 /**
  * JUnit class covering methods of class org.vincibean.salestaxes.controller.MarketController
@@ -41,14 +42,17 @@ import org.vincibean.salestaxes.configuration.SalesTaxesApplication;
 @SpringApplicationConfiguration(classes = SalesTaxesApplication.class)
 @WebAppConfiguration
 public class MarketControllerTest {
-	
+
 	/**
 	 * Object data that will be used in test methods.
 	 */
 
 	@Autowired
 	private MarketController marketController;
-	
+
+	@Autowired
+	private PoiuytService poiuytService;
+
 	private MockMvc mockMvc;
 
 	/**
@@ -71,6 +75,28 @@ public class MarketControllerTest {
 			.andExpect(MockMvcResultMatchers.model().attributeExists("poiuyts"))
 			.andExpect(MockMvcResultMatchers.status().isOk())
 			.andExpect(MockMvcResultMatchers.view().name("market/poiuyt_list"));
+		} catch (Exception e) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Test that requesting the poiuyt detail page will behave as intended (no Exception will be thrown).
+	 * Get request.
+	 * Requesting with "/market/poiuyt_detail".
+	 */
+	@Test
+	public void getPoiuytDetailTest() {
+		try {
+			mockMvc.perform(MockMvcRequestBuilders.get("/market/poiuyt_detail").param("poiuytId", poiuytService
+					.findAllPoiuyts()
+					.iterator()
+					.next()
+					.getId()
+					.toString()))
+					.andExpect(MockMvcResultMatchers.model().attributeExists("poiuyt"))
+					.andExpect(MockMvcResultMatchers.status().isOk())
+					.andExpect(MockMvcResultMatchers.view().name("market/poiuyt_detail"));
 		} catch (Exception e) {
 			Assert.fail();
 		}
