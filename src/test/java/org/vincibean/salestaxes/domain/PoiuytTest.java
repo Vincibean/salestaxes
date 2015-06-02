@@ -76,6 +76,16 @@ public class PoiuytTest {
 		poiuyt.setDescription(description);
 		Assert.assertEquals(description, poiuyt.getDescription());
 	}
+	
+	/**
+	 * Test that setPrice()/getPrice() will behave consistently. 
+	 */
+	@Test
+	public void testPrice(){
+		double price = 4567.765;
+		poiuyt.setPrice(price);;
+		Assert.assertEquals(price, poiuyt.getPrice(), 0.001);
+	}
 
 	/**
 	 * Test that setCategorySet()/getCategorySet() will behave consistently. 

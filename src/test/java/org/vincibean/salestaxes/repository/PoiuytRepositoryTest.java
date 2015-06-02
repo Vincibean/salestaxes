@@ -171,6 +171,7 @@ public class PoiuytRepositoryTest {
 		Poiuyt validPoiuyt = new Poiuyt();
 		validPoiuyt.setName("JUnit valid Poiuyt");
 		validPoiuyt.setDescription("A mock Poiuyt object for JUnit tests");
+		validPoiuyt.setPrice(100L);
 		validPoiuyt.setCategorySet(new HashSet<Category>(Arrays.asList(createMockCategory())));
 		return validPoiuyt;
 	}

@@ -69,6 +69,13 @@ public class Poiuyt implements Serializable {
 	 */
 	@Column(name="DESCRIPTION")
 	private String description;
+	
+	/**
+	 * The base price (without fees, taxes and discount) for this Poiuyt.
+	 */
+	@Column(name="PRICE")
+	@NotNull
+	private double price;
 
 	/**
 	 * The {@link Set} of {@link Category}s associated to this Poiuyt.
