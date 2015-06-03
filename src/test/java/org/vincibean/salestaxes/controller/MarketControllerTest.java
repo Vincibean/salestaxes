@@ -66,7 +66,7 @@ public class MarketControllerTest {
 	/**
 	 * Test that requesting the poiuyts page will behave as intended (no Exception will be thrown).
 	 * Get request.
-	 * Requesting with "/market/categories".
+	 * Requesting with "/market/poiuyts".
 	 */
 	@Test
 	public void getPoiuytsTest() {
