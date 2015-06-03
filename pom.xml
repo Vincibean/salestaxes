@@ -88,7 +88,34 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- Plugin for XJC Build -->
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.8.1</version>
+				<executions>
+					<execution>
+						<id>receipt-generate</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaDirectory>src/main/resources/receipt</schemaDirectory>
+							<schemaIncludes>
+								<include>*.xsd</include>
+							</schemaIncludes>
+							<generatePackage>org.vincibean.salestaxes.generated</generatePackage>
+							<generateDirectory>${project.build.directory}/generated-sources</generateDirectory>
+							<extension>true</extension>
+							<bindingIncludes>
+								<include>*.xjb</include>
+							</bindingIncludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
+		<finalName>receipt</finalName>
 	</build>
 
 </project>
