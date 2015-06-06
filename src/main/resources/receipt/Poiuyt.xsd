@@ -7,7 +7,10 @@
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="header" type="HeaderType" minOccurs="1" maxOccurs="1"/>
-				<xsd:element name="poiuyt" type="Poiuyt" minOccurs="1" maxOccurs="unbounded"/>
+				<xsd:element name="poiuyts" type="Poiuyt" minOccurs="1" maxOccurs="unbounded"/>
+				<xsd:element name="totalCosts" type="xsd:double" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="totalTaxes" type="xsd:double" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="grandTotal" type="xsd:double" minOccurs="1" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
 		
