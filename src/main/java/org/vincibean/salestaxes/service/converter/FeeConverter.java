@@ -19,11 +19,10 @@ package org.vincibean.salestaxes.service.converter;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.vincibean.salestaxes.generated.Fee;
 import org.vincibean.salestaxes.generated.Receipt;
 
 /**
- * {@link Converter} implementation, converts {@link org.vincibean.salestaxes.domain.Fee} objects in {@link Fee} objects.
+ * {@link Converter} implementation, converts {@link org.vincibean.salestaxes.domain.Fee} objects in {@link org.vincibean.salestaxes.generated.Fee} objects.
  * Useful on {@link Receipt} generation.
  * 
  * @author Vincibean
@@ -33,7 +32,7 @@ import org.vincibean.salestaxes.generated.Receipt;
 public class FeeConverter implements Converter<org.vincibean.salestaxes.domain.Fee, org.vincibean.salestaxes.generated.Fee> {
 
 	@Override
-	public org.vincibean.salestaxes.generated.Fee convert(org.vincibean.salestaxes.domain.Fee source) {
+	public org.vincibean.salestaxes.generated.Fee convert(final org.vincibean.salestaxes.domain.Fee source) {
 		org.vincibean.salestaxes.generated.Fee target = new org.vincibean.salestaxes.generated.Fee();
 		target.setId(source.getId());
 		target.setName(source.getName());
