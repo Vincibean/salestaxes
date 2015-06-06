@@ -1,0 +1,256 @@
+/* Join Category and  Poiuyt tables. */
+
+/* Join all Poiuyts with the base Category */
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Poiuyt Category' 
+	AND 
+		POIUYT.NAME='"How I did It"; Author: "Victor Frankenstein"';
+		
+INSERT
+INTO CATEGORY_POIUYT
+	(
+		CATEGORY_ID,
+		POIUYT_ID
+	)
+SELECT
+	CATEGORY.ID,
+	POIUYT.ID
+FROM
+	CATEGORY
+	CROSS JOIN
+	POIUYT
+	WHERE
+		CATEGORY.NAME='Poiuyt Category'
+	AND
+		POIUYT.NAME='"Life and Death of a Poiuyt"; Author: "Foobar Foo van Bar"';
+		
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Poiuyt Category' 
+	AND 
+		POIUYT.NAME='"A Poiuyt of Ice and Fire"; Authors: "Eski-Moe and Johnny Storm"';
+		
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Poiuyt Category' 
+	AND 
+		POIUYT.NAME='Aspirina';
+		
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Poiuyt Category' 
+	AND 
+		POIUYT.NAME='Flu Killer';
+		
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Poiuyt Category' 
+	AND 
+		POIUYT.NAME='Provola';
+		
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Poiuyt Category' 
+	AND 
+		POIUYT.NAME='Jasmine Tea';
+	
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Poiuyt Category' 
+	AND 
+		POIUYT.NAME='FooBar T-Shirt';
+		
+/* Join all Poiuyts with a tax with the "Sold Good" Category */
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Sold Good' 
+	AND 
+		POIUYT.NAME='FooBar T-Shirt';
+
+/* Join all imported Poiuyts with the "Imported Good" Category */
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Imported Good' 
+	AND 
+		POIUYT.NAME='"How I did It"; Author: "Victor Frankenstein"';
+		
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Imported Good' 
+	AND 
+		POIUYT.NAME='"A Poiuyt of Ice and Fire"; Authors: "Eski-Moe and Johnny Storm"';
+		
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Imported Good' 
+	AND 
+		POIUYT.NAME='Flu Killer';
+		
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Imported Good' 
+	AND 
+		POIUYT.NAME='Jasmine Tea';
+		
+INSERT
+INTO CATEGORY_POIUYT 
+	(
+		CATEGORY_ID, 
+		POIUYT_ID
+	)
+SELECT 
+	CATEGORY.ID, 
+	POIUYT.ID 
+FROM 
+	CATEGORY 
+	CROSS JOIN 
+	POIUYT 
+	WHERE 
+		CATEGORY.NAME='Imported Good' 
+	AND 
+		POIUYT.NAME='FooBar T-Shirt';
