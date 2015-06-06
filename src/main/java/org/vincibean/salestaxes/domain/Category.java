@@ -45,6 +45,8 @@ import lombok.Data;
 public class Category implements Serializable {
 
 	private static final long serialVersionUID = -8744401854480574688L;
+	
+	public static final String SALES_TAXES_CATEGORY_NAME = "Sales Tax Good";
 
 	/**
 	 * The unique identifier for this Category.
