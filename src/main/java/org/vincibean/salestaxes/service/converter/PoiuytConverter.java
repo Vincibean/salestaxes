@@ -38,7 +38,6 @@ public class PoiuytConverter implements Converter<org.vincibean.salestaxes.domai
 	@Override
 	public org.vincibean.salestaxes.generated.Poiuyt convert(org.vincibean.salestaxes.domain.Poiuyt source) {
 		org.vincibean.salestaxes.generated.Poiuyt target = new org.vincibean.salestaxes.generated.Poiuyt();
-		target.setId(source.getId());
 		target.setName(source.getName());
 		target.setDescription(source.getDescription());
 		for(org.vincibean.salestaxes.domain.Category category : source.getCategorySet()){

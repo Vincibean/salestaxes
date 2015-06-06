@@ -34,7 +34,6 @@ class FeeConverter implements Converter<org.vincibean.salestaxes.domain.Fee, org
 	@Override
 	public org.vincibean.salestaxes.generated.Fee convert(final org.vincibean.salestaxes.domain.Fee source) {
 		org.vincibean.salestaxes.generated.Fee target = new org.vincibean.salestaxes.generated.Fee();
-		target.setId(source.getId());
 		target.setName(source.getName());
 		target.setDescription(source.getDescription());
 		target.setValue(source.getValue());

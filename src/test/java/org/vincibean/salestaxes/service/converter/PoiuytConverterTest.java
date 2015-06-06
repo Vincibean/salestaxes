@@ -63,7 +63,6 @@ public class PoiuytConverterTest {
 		org.vincibean.salestaxes.generated.Poiuyt target = poiuytConverter.convert(source);
 		assertNotNull(target);
 		assertNotEquals(source.getClass(), target.getClass());
-		assertEquals(source.getId().doubleValue(), target.getId(), 0);
 		assertEquals(source.getName(), target.getName());
 		assertEquals(source.getDescription(), target.getDescription());
 		assertEquals(source.getPrice(), target.getBasePrice(), 0.01);

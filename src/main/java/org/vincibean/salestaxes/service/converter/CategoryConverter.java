@@ -38,7 +38,6 @@ class CategoryConverter implements Converter<org.vincibean.salestaxes.domain.Cat
 	@Override
 	public org.vincibean.salestaxes.generated.Category convert(org.vincibean.salestaxes.domain.Category source) {
 		org.vincibean.salestaxes.generated.Category target = new org.vincibean.salestaxes.generated.Category();
-		target.setId(source.getId());
 		target.setName(source.getName());
 		target.setDescription(source.getDescription());
 		target.setFee(feeConverter.convert(source.getFee()));

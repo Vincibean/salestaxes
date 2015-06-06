@@ -55,7 +55,6 @@ public class FeeConverterTest {
 		org.vincibean.salestaxes.generated.Fee target = feeConverter.convert(source);
 		assertNotNull(target);
 		assertNotEquals(source.getClass(), target.getClass());
-		assertEquals(source.getId().doubleValue(), target.getId(), 0);
 		assertEquals(source.getName(), target.getName());
 		assertEquals(source.getDescription(), target.getDescription());
 		assertEquals(source.getValue(), target.getValue(), 0.001);

@@ -57,10 +57,8 @@ public class CategoryConverterTest {
 		org.vincibean.salestaxes.generated.Category target = categoryConverter.convert(source);
 		assertNotNull(target);
 		assertNotEquals(source.getClass(), target.getClass());
-		assertEquals(source.getId().doubleValue(), target.getId(), 0);
 		assertEquals(source.getName(), target.getName());
 		assertEquals(source.getDescription(), target.getDescription());
-		assertEquals(source.getFee().getId().doubleValue(), target.getFee().getId(), 0);
 		assertEquals(source.getFee().getName(), target.getFee().getName());
 		assertEquals(source.getFee().getDescription(), target.getFee().getDescription());
 		assertEquals(source.getFee().getValue(), target.getFee().getValue(), 0.001);

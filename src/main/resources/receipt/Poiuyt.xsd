@@ -8,9 +8,9 @@
 			<xsd:sequence>
 				<xsd:element name="header" type="HeaderType" minOccurs="1" maxOccurs="1"/>
 				<xsd:element name="poiuyts" type="Poiuyt" minOccurs="1" maxOccurs="unbounded"/>
-				<xsd:element name="totalCosts" type="xsd:double" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="totalBasePrices" type="xsd:double" minOccurs="1" maxOccurs="1"/>
 				<xsd:element name="totalTaxes" type="xsd:double" minOccurs="1" maxOccurs="1"/>
-				<xsd:element name="saleTaxes" type="xsd:double" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="totalSalesTaxes" type="xsd:double" minOccurs="1" maxOccurs="1"/>
 				<xsd:element name="grandTotal" type="xsd:double" minOccurs="1" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
@@ -27,7 +27,6 @@
 	
 	<xsd:complexType name="Poiuyt">
 		<xsd:sequence>
-			<xsd:element name="id" type="xsd:double" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="basePrice" type="xsd:double" minOccurs="1" maxOccurs="1"/>
@@ -38,7 +37,6 @@
 	
 	<xsd:complexType name="Category">
 		<xsd:sequence>
-			<xsd:element name="id" type="xsd:double" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="fee" type="Fee" minOccurs="1" maxOccurs="1"/>
@@ -48,7 +46,6 @@
 	
 	<xsd:complexType name="Fee">
 		<xsd:sequence>
-			<xsd:element name="id" type="xsd:double" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
 			<xsd:element name="description" type="xsd:string" minOccurs="0" maxOccurs="1"/>
 			<xsd:element name="value" type="xsd:double" minOccurs="1" maxOccurs="1"/>
