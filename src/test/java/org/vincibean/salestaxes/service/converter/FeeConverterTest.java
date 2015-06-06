@@ -43,7 +43,7 @@ import org.vincibean.salestaxes.configuration.SalesTaxesApplication;
 public class FeeConverterTest {
 
 	@Autowired
-	public Converter<org.vincibean.salestaxes.domain.Fee, org.vincibean.salestaxes.generated.Fee> feeConverter;
+	private Converter<org.vincibean.salestaxes.domain.Fee, org.vincibean.salestaxes.generated.Fee> feeConverter;
 
 	/**
 	 * Test that method convert() will return a not null object of a type different from the source one,
