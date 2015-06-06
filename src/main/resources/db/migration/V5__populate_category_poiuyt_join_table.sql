@@ -145,7 +145,7 @@ FROM
 	AND 
 		POIUYT.NAME='FooBar T-Shirt';
 		
-/* Join all Poiuyts with a tax with the "Sold Good" Category */
+/* Join all Poiuyts with a tax with the "Sales Tax Good" Category */
 INSERT
 INTO CATEGORY_POIUYT 
 	(
@@ -160,7 +160,7 @@ FROM
 	CROSS JOIN 
 	POIUYT 
 	WHERE 
-		CATEGORY.NAME='Sold Good' 
+		CATEGORY.NAME='Sales Tax Good' 
 	AND 
 		POIUYT.NAME='FooBar T-Shirt';
 

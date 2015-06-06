@@ -22,7 +22,7 @@ INTO CATEGORY
 		FEE
 	) 	
 SELECT 
-	'Sold Good', 
+	'Sales Tax Good', 
 	'The best goodies that your beautiful Market can offer come with a price. And a tax too. Sorry for that, we didn''t mean to.', 
 	ID 
 FROM FEE 
