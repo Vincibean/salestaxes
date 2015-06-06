@@ -30,7 +30,7 @@ import org.vincibean.salestaxes.generated.Receipt;
  *
  */
 @Component
-public class CategoryConverter implements Converter<org.vincibean.salestaxes.domain.Category, org.vincibean.salestaxes.generated.Category> {
+class CategoryConverter implements Converter<org.vincibean.salestaxes.domain.Category, org.vincibean.salestaxes.generated.Category> {
 
 	@Autowired
 	private Converter<org.vincibean.salestaxes.domain.Fee, org.vincibean.salestaxes.generated.Fee> feeConverter;

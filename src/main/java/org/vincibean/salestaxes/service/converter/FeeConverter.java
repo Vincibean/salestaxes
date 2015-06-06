@@ -29,7 +29,7 @@ import org.vincibean.salestaxes.generated.Receipt;
  *
  */
 @Component
-public class FeeConverter implements Converter<org.vincibean.salestaxes.domain.Fee, org.vincibean.salestaxes.generated.Fee> {
+class FeeConverter implements Converter<org.vincibean.salestaxes.domain.Fee, org.vincibean.salestaxes.generated.Fee> {
 
 	@Override
 	public org.vincibean.salestaxes.generated.Fee convert(final org.vincibean.salestaxes.domain.Fee source) {
