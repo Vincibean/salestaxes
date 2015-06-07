@@ -10,7 +10,6 @@
 				<xsd:element name="poiuyts" type="Poiuyt" minOccurs="1" maxOccurs="unbounded"/>
 				<xsd:element name="totalBasePrices" type="xsd:double" minOccurs="1" maxOccurs="1"/>
 				<xsd:element name="totalTaxes" type="xsd:double" minOccurs="1" maxOccurs="1"/>
-				<xsd:element name="totalSalesTaxes" type="xsd:double" minOccurs="1" maxOccurs="1"/>
 				<xsd:element name="grandTotal" type="xsd:double" minOccurs="1" maxOccurs="1"/>
 			</xsd:sequence>
 		</xsd:complexType>
