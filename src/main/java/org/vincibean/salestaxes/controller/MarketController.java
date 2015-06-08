@@ -54,7 +54,7 @@ import com.google.common.base.Optional;
  */
 @Controller
 @RequestMapping("/market")
-public class MarketController {
+class MarketController {
 
 	@Autowired
 	private PoiuytService poiuytService;

@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-public class HomeController {
+class HomeController {
 
 	/**
 	 * Get the web page describing the index page of FooBar market.
