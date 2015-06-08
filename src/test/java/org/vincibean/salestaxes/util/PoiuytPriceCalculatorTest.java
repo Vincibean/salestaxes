@@ -16,135 +16,198 @@ import org.vincibean.salestaxes.domain.Poiuyt;
  *
  */
 public class PoiuytPriceCalculatorTest {
-
-	/**
-	 * Test that method calculatePoiuytPrice() will return the exact percentage in a simple case
-	 * (1 Poiuyt, 1 category, positive fee vale).
-	 */
-	@Test
-	public void testCalculatePoiuytPrice(){
-		Poiuyt mockPoiuyt = createMockPoiuyt();
-		// Only 1 Category.
-		double feeValue = mockPoiuyt.getCategorySet().iterator().next().getFee().getValue();
-		Assert.assertEquals(mockPoiuyt.getPrice() + (mockPoiuyt.getPrice() * feeValue / 100), PoiuytPriceCalculator.calculatePoiuytPrice(createMockPoiuyt()), 0.001);
-	}
-
-	/**
-	 * Test that method calculatePoiuytPrice() will return the exact percentage in case there is
-	 * 1 Poiuyt, 1 category, positive fee vale, and the Poiuyt price is 0.
-	 */
-	@Test
-	public void testCalculatePoiuytNoPrice(){
-		Poiuyt mockPoiuyt = createMockPoiuyt();
-		mockPoiuyt.setPrice(0);
-		Assert.assertEquals(0, PoiuytPriceCalculator.calculatePoiuytPrice(mockPoiuyt), 0.001);
-	}
-
-	/**
-	 * Test that method calculatePoiuytPrice() will return the exact percentage in case there is
-	 * 1 Poiuyt, 1 category, and the fee value is 0.
-	 */
-	@Test
-	public void testCalculatePoiuytNoPriceInCategory(){
-		Poiuyt mockPoiuyt = createMockPoiuyt();
-		for(Category category : mockPoiuyt.getCategorySet()){
-			category.getFee().setValue(0);
-		}
-		Assert.assertEquals(mockPoiuyt.getPrice(), PoiuytPriceCalculator.calculatePoiuytPrice(mockPoiuyt), 0.001);
-	}
-
-	/**
-	 * Test that method calculatePoiuytPrice() will return the exact percentage in case there is
-	 * 1 Poiuyt, 1 category, positive fee value, and the Poiuyt price is negative.
-	 */
-	@Test
-	public void testCalculatePoiuytNegativePrice(){
-		Poiuyt mockPoiuyt = createMockPoiuyt();
-		mockPoiuyt.setPrice(-100);
-		Assert.assertEquals(-112.7, PoiuytPriceCalculator.calculatePoiuytPrice(mockPoiuyt), 0.001);
-	}
-
-	/**
-	 * Test that method calculatePoiuytPrice() will return the exact percentage in case there is
-	 * 1 Poiuyt, 1 category, and negative fee value.
-	 */
-	@Test
-	public void testCalculatePoiuytDiscount(){
-		Poiuyt mockPoiuyt = createMockPoiuyt();
-		for(Category category : mockPoiuyt.getCategorySet()){
-			category.getFee().setValue(-10);
-		}
-		// Only one Category.
-		Assert.assertEquals(mockPoiuyt.getPrice() * 90 / 100, PoiuytPriceCalculator.calculatePoiuytPrice(mockPoiuyt), 0.001);
-	}
+	
+	private static final double POIUYT_BASE_PRICE = 200L;
+	
+	private static final double FEE_BASE_TAX = 12.7;
 	
 	/**
-	 * Test that method calculatePoiuytBasketPrice() will return the exact percentage in a simple case
+	 * Test that method calculatePoiuytBasketTotalBasePrice() will return the exact price in a simple case
 	 * (2 Poiuyt, each one having 1 category, positive fee vale).
 	 */
 	@Test
-	public void testCalculatePoiuytBasketPrice(){
+	public void testCalculatePoiuytBasketTotalBasePrice(){
 		Poiuyt mockPoiuyt = createMockPoiuyt();
 		Assert.assertEquals(
-				// Only one Category.
-				2 * (mockPoiuyt.getPrice() + (mockPoiuyt.getPrice() * mockPoiuyt.getCategorySet().iterator().next().getFee().getValue() / 100)), 
-				PoiuytPriceCalculator.calculatePoiuytBasketPrice(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
-		
+				2 * (mockPoiuyt.getPrice()), 
+				PoiuytPriceCalculator.calculatePoiuytBasketTotalBasePrice(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
 	}
-	
+
 	/**
-	 * Test that method calculatePoiuytBasketPrice() will return the exact percentage in case there are
-	 * 2 Poiuyt, each one having 1 category, positive fee vale, and the Poiuyt prices are 0.
+	 * Test that method calculatePoiuytBasketTotalBasePrice() will return the exact price in case there are
+	 * 2 Poiuyt, each one having 1 category, positive fee vale, and the Poiuyt prices is 0.
 	 */
 	@Test
-	public void testCalculatePoiuytBasketNoPrice(){
+	public void testCalculatePoiuytBaskeTotalBasePriceNoPrice(){
 		Poiuyt mockPoiuyt = createMockPoiuyt();
 		mockPoiuyt.setPrice(0);
-		// Only one Category.
-		Assert.assertEquals(0, PoiuytPriceCalculator.calculatePoiuytBasketPrice(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
-		
+		Assert.assertEquals(0, PoiuytPriceCalculator.calculatePoiuytBasketTotalBasePrice(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
 	}
-	
+
 	/**
-	 * Test that method calculatePoiuytBasketPrice() will return the exact percentage in case there are
+	 * Test that method calculatePoiuytBasketTotalBasePrice() will return the exact price in case there are
 	 * 2 Poiuyts, each one having 1 category, and the fee vale is 0.
 	 */
 	@Test
-	public void testCalculatePoiuytBasketNoPriceInCategory(){
+	public void testCalculatePoiuytBasketTotalBasePriceNoPriceInCategory(){
 		Poiuyt mockPoiuyt = createMockPoiuyt();
 		for(Category category : mockPoiuyt.getCategorySet()){
 			category.getFee().setValue(0);
 		}
 		Assert.assertEquals(mockPoiuyt.getPrice() * 2, 
-				PoiuytPriceCalculator.calculatePoiuytBasketPrice(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
+				PoiuytPriceCalculator.calculatePoiuytBasketTotalBasePrice(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
 	}
-	
+
 	/**
-	 * Test that method calculatePoiuytBasketPrice() will return the exact percentage in case there are
+	 * Test that method calculatePoiuytBasketTotalBasePrice() will return the exact price in case there are
 	 * 2 Poiuyts, each one having 1 category, positive fee value, and the Poiuyt price is negative.
 	 */
 	@Test
-	public void testCalculatePoiuytBasketNegativePrice(){
+	public void testCalculatePoiuytBasketTotalBasePriceNegativePrice(){
 		Poiuyt mockPoiuyt = createMockPoiuyt();
 		mockPoiuyt.setPrice(-100);
-		// Only one Category.
-		Assert.assertEquals(2 * (mockPoiuyt.getPrice() + (mockPoiuyt.getPrice() * mockPoiuyt.getCategorySet().iterator().next().getFee().getValue() / 100)), 
-				PoiuytPriceCalculator.calculatePoiuytBasketPrice(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
+		Assert.assertEquals(2 * (mockPoiuyt.getPrice()), 
+				PoiuytPriceCalculator.calculatePoiuytBasketTotalBasePrice(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
 	}
-	
+
 	/**
-	 * Test that method calculatePoiuytBasketPrice() will return the exact percentage in case there are
+	 * Test that method calculatePoiuytBasketTotalBasePrice() will return the exact price in case there are
 	 * 2 Poiuyt, each one having 1 category, negative fee vale.
 	 */
 	@Test
-	public void testCalculatePoiuytBasketPriceDiscount(){
+	public void testCalculatePoiuytBasketTotalBasePriceDiscount(){
 		Poiuyt mockPoiuyt = createMockPoiuyt();
 		for(Category category : mockPoiuyt.getCategorySet()){
 			category.getFee().setValue(-10);
 		}
-		// Only one Category.
-		Assert.assertEquals(2 * (mockPoiuyt.getPrice() + (mockPoiuyt.getPrice() * mockPoiuyt.getCategorySet().iterator().next().getFee().getValue() / 100)), 
-				PoiuytPriceCalculator.calculatePoiuytBasketPrice(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
+		Assert.assertEquals(2 * (mockPoiuyt.getPrice()), 
+				PoiuytPriceCalculator.calculatePoiuytBasketTotalBasePrice(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
+	}
+	
+	/**
+	 * Test that method calculatePoiuytBasketTotalTaxes() will return the exact tax amount in a simple case
+	 * (2 Poiuyt, each one having 1 category, positive fee vale).
+	 */
+	@Test
+	public void testCalculatePoiuytBasketTotalTaxes(){
+		Poiuyt mockPoiuyt = createMockPoiuyt();
+		Assert.assertEquals(
+				2 * (mockPoiuyt.getPrice() * (FEE_BASE_TAX) / 100.0), 
+				PoiuytPriceCalculator.calculatePoiuytBasketTotalTaxes(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
+	}
+	
+	/**
+	 * Test that method calculatePoiuytBasketTotalTaxes() will return the exact tax amount in case there are
+	 * 2 Poiuyt, each one having 1 category, positive fee vale, and the Poiuyt prices are 0.
+	 */
+	@Test
+	public void testCalculatePoiuytBaskeTotalTaxesNoPrice(){
+		Poiuyt mockPoiuyt = createMockPoiuyt();
+		mockPoiuyt.setPrice(0);
+		Assert.assertEquals(0, PoiuytPriceCalculator.calculatePoiuytBasketTotalTaxes(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
+	}
+	
+	/**
+	 * Test that method calculatePoiuytBasketTotalTaxes() will return the exact tax amount in case there are
+	 * 2 Poiuyts, each one having 1 category, and the fee vale is 0.
+	 */
+	@Test
+	public void testCalculatePoiuytBasketTotalTaxesNoPriceInCategory(){
+		Poiuyt mockPoiuyt = createMockPoiuyt();
+		for(Category category : mockPoiuyt.getCategorySet()){
+			category.getFee().setValue(0);
+		}
+		Assert.assertEquals(0, PoiuytPriceCalculator.calculatePoiuytBasketTotalTaxes(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
+	}
+	
+	/**
+	 * Test that method calculatePoiuytBasketTotalTaxes() will return the exact tax amount in case there are
+	 * 2 Poiuyts, each one having 1 category, positive fee value, and the Poiuyt price is negative.
+	 */
+	@Test
+	public void testCalculatePoiuytBasketTotalTaxesNegativePrice(){
+		Poiuyt mockPoiuyt = createMockPoiuyt();
+		mockPoiuyt.setPrice(-100);
+		Assert.assertEquals(2 * (mockPoiuyt.getPrice() * FEE_BASE_TAX / 100), 
+				PoiuytPriceCalculator.calculatePoiuytBasketTotalTaxes(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
+	}
+	
+	/**
+	 * Test that method calculatePoiuytTotalTaxes() will return the exact percentage in case there are
+	 * 2 Poiuyt, each one having 1 category, negative fee vale.
+	 */
+	@Test
+	public void testCalculatePoiuytBasketTotalTaxesDiscount(){
+		final double newFee = -10.0;
+		Poiuyt mockPoiuyt = createMockPoiuyt();
+		for(Category category : mockPoiuyt.getCategorySet()){
+			category.getFee().setValue(newFee);
+		}
+		Assert.assertEquals(2 * (mockPoiuyt.getPrice() * newFee / 100), 
+				PoiuytPriceCalculator.calculatePoiuytBasketTotalTaxes(Arrays.asList(mockPoiuyt, mockPoiuyt)), 0.001);
+	}
+	
+	/**
+	 * Test that method calculatePoiuytBasketTotalTaxesPerPoiuyt() will return the total amount of the taxes of the given Poiuyt
+	 * in a simple case (1 Poiuyt having 1 category, positive fee vale).
+	 */
+	@Test
+	public void testCalculateTotalTaxesPerPoiuyt(){
+		Poiuyt mockPoiuyt = createMockPoiuyt();
+		Assert.assertEquals(
+				mockPoiuyt.getPrice() * FEE_BASE_TAX / 100, 
+				PoiuytPriceCalculator.calculateTotalTaxesPerPoiuyt(mockPoiuyt), 0.001);
+	}
+	
+	/**
+	 * Test that method calculatePoiuytBasketTotalTaxesPerPoiuyt() will return the exact tax amount in case there is
+	 * 1 Poiuyt having 1 category, positive fee vale, and the Poiuyt price is 0.
+	 */
+	@Test
+	public void testCalculateTotalTaxesPerPoiuytNoPrice(){
+		Poiuyt mockPoiuyt = createMockPoiuyt();
+		mockPoiuyt.setPrice(0);
+		Assert.assertEquals(0, PoiuytPriceCalculator.calculateTotalTaxesPerPoiuyt(mockPoiuyt), 0.001);
+	}
+	
+	/**
+	 * Test that method calculateTotalTaxesPerPoiuyt() will return the exact tax amount in case there is
+	 * 1 Poiuyts having 1 category, and the fee vale is 0.
+	 */
+	@Test
+	public void testCalculateTotalTaxesPerPoiuytNoPriceInCategory(){
+		Poiuyt mockPoiuyt = createMockPoiuyt();
+		for(Category category : mockPoiuyt.getCategorySet()){
+			category.getFee().setValue(0);
+		}
+		Assert.assertEquals(0, PoiuytPriceCalculator.calculateTotalTaxesPerPoiuyt(mockPoiuyt), 0.001);
+	}
+	
+	/**
+	 * Test that method calculateTotalTaxesPerPoiuyt() will return the exact tax amount in case there is
+	 * 1 Poiuyts having 1 category, positive fee value, and the Poiuyt price is negative.
+	 */
+	@Test
+	public void testCalculateTotalTaxesPerPoiuytNegativePrice(){
+		Poiuyt mockPoiuyt = createMockPoiuyt();
+		mockPoiuyt.setPrice(-100);
+		Assert.assertEquals(mockPoiuyt.getPrice() * FEE_BASE_TAX / 100, 
+				PoiuytPriceCalculator.calculateTotalTaxesPerPoiuyt(mockPoiuyt), 0.001);
+	}
+	
+	/**
+	 * Test that method calculateTotalTaxesPerPoiuyt() will return the exact tax amount in case there is
+	 * 1 Poiuyt having 1 category, negative fee vale.
+	 */
+	@Test
+	public void testCalculateTotalTaxesPerPoiuytDiscount(){
+		final double newFee = -10.0;
+		Poiuyt mockPoiuyt = createMockPoiuyt();
+		for(Category category : mockPoiuyt.getCategorySet()){
+			category.getFee().setValue(newFee);
+		}
+		Assert.assertEquals(mockPoiuyt.getPrice() * newFee / 100, 
+				PoiuytPriceCalculator.calculateTotalTaxesPerPoiuyt(mockPoiuyt), 0.001);
 	}
 
 	/**
@@ -155,7 +218,7 @@ public class PoiuytPriceCalculatorTest {
 		Poiuyt validPoiuyt = new Poiuyt();
 		validPoiuyt.setName("JUnit valid Poiuyt");
 		validPoiuyt.setDescription("A mock Poiuyt object for JUnit tests");
-		validPoiuyt.setPrice(200L);
+		validPoiuyt.setPrice(POIUYT_BASE_PRICE);
 		validPoiuyt.setCategorySet(new HashSet<Category>(Arrays.asList(createMockCategory())));
 		return validPoiuyt;
 	}
@@ -180,7 +243,7 @@ public class PoiuytPriceCalculatorTest {
 		Fee mockFee = new Fee();
 		mockFee.setName("JUnit valid Fee");
 		mockFee.setDescription("A mock Fee object for JUnit tests");
-		mockFee.setValue(12.7f);
+		mockFee.setValue(FEE_BASE_TAX);
 		return mockFee;
 	}
 
