@@ -17,10 +17,13 @@
 
 package org.vincibean.salestaxes.service.converter;
 
+import org.apache.commons.math.util.MathUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.vincibean.salestaxes.generated.Receipt;
+import org.vincibean.salestaxes.util.PoiuytPriceCalculator;
+import org.vincibean.salestaxes.util.Rounder;
 
 /**
  * {@link Converter} implementation, converts {@link org.vincibean.salestaxes.domain.Poiuyt} objects in {@link org.vincibean.salestaxes.generated.Poiuyt} objects.
@@ -44,6 +47,8 @@ public class PoiuytConverter implements Converter<org.vincibean.salestaxes.domai
 			target.getCategory().add(categoryConverter.convert(category));
 		}
 		target.setBasePrice(source.getPrice());
+		// Round the final price for avoiding inaccuracies due to floating point numbers limitations(discrete mathematics) 
+		target.setFinalPrice(MathUtils.round(source.getPrice() + Rounder.round(PoiuytPriceCalculator.calculateTotalTaxesPerPoiuyt(source)), 2));
 		return target;
 	}
 

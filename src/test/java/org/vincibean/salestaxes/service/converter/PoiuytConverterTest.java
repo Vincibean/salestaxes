@@ -36,6 +36,8 @@ import org.vincibean.salestaxes.configuration.SalesTaxesApplication;
 import org.vincibean.salestaxes.domain.Category;
 import org.vincibean.salestaxes.domain.Fee;
 
+import com.google.common.collect.Sets;
+
 /**
  * JUnit class covering methods of class org.vincibean.salestaxes.service.converter.PoiuytConverter.
  * 
@@ -66,6 +68,62 @@ public class PoiuytConverterTest {
 		assertEquals(source.getName(), target.getName());
 		assertEquals(source.getDescription(), target.getDescription());
 		assertEquals(source.getPrice(), target.getBasePrice(), 0.01);
+	}
+
+	/**
+	 * Test that, given a domain.Poiuyt whose base price is 14.99 and who belongs to Sales Taxes category (10% tax), 
+	 * method convert() will return a generated.Poiuyt whose final price is 16.49.
+	 */
+	@Test
+	public void testConvertFinalPrice(){
+		// Create a Sales Taxes Fee
+		Fee fee = new Fee();
+		fee.setName("Sales Taxes");
+		fee.setDescription("Sales Taxes");
+		fee.setValue(10);
+		
+		// Create a Sales Taxes Category.
+		Category category = new Category();
+		category.setName(Category.SALES_TAXES_CATEGORY_NAME);
+		category.setDescription(Category.SALES_TAXES_CATEGORY_NAME);
+		category.setFee(fee);
+		
+		// Create a music CD Poiuyt.
+		org.vincibean.salestaxes.domain.Poiuyt musicCd = new org.vincibean.salestaxes.domain.Poiuyt();
+		musicCd.setName("Music CD");
+		musicCd.setDescription("Music CD");
+		musicCd.setPrice(14.99);
+		musicCd.setCategorySet(Sets.newHashSet(category));
+
+		assertEquals(16.49, poiuytConverter.convert(musicCd).getFinalPrice(), 0.001);
+	}
+	
+	/**
+	 * Test that, given a domain.Poiuyt whose base price is 14.99 and who belongs to No Taxes category (no tax), 
+	 * method convert() will return a generated.Poiuyt whose final price is 16.49.
+	 */
+	@Test
+	public void testConvertFinalPrice2(){
+		// Create a Sales Taxes Fee
+		Fee fee = new Fee();
+		fee.setName("No Tax");
+		fee.setDescription("No Tax");
+		fee.setValue(0);
+		
+		// Create a Sales Taxes Category.
+		Category category = new Category();
+		category.setName("No Tax");
+		category.setDescription("No Tax");
+		category.setFee(fee);
+		
+		// Create a music CD Poiuyt.
+		org.vincibean.salestaxes.domain.Poiuyt musicCd = new org.vincibean.salestaxes.domain.Poiuyt();
+		musicCd.setName("Music CD");
+		musicCd.setDescription("Music CD");
+		musicCd.setPrice(14.99);
+		musicCd.setCategorySet(Sets.newHashSet(category));
+
+		assertEquals(14.99, poiuytConverter.convert(musicCd).getFinalPrice(), 0.001);
 	}
 
 	/**
