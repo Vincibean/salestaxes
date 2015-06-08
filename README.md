@@ -13,6 +13,7 @@ This software takes advantage of the following frameworks:
 - Thymeleaf
 - Bootstrap
 - Apache Derby
+- JAXB
 
 # How can I run it?
 This project is designed so that you can run it locally with minimal to no effort: Apache Derby can run a DataBase locally and Flyway populates it with mock data. You are only required to install Lombok. In order to do so, please follow the instructions that are privided here: https://projectlombok.org/download.html
