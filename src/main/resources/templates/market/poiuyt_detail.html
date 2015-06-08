@@ -5,23 +5,26 @@
 	<div th:include="fragment/common :: header"></div>
 
 	<!-- Jumbotron -->
-	<div class="jumbotron">
-		<h1 th:text="${poiuyt.name}">The Poiuyt you seleted.</h1>
-		<div class="form-group float-right">
-			<label id="smalltext"><b>How many
-					items you intend to buy?</b></label>
-			<input type="number"
-				class="form-control" id="quantity" name="quantity"
-				min="0" max="9999" />
-			<p>
-			<a class="btn btn-lg btn-success float-right" href="#" role="button">Buy
-				now!</a>
-			</p>
+	<form th:action="@{/market/export-receipt}" method="post">
+		<div class="jumbotron">
+			<h1 th:text="${poiuyt.name}">The Poiuyt you selected.</h1>
+			<div class="form-group float-right">
+				<label id="smalltext"><b>How many items you intend to
+						buy?</b></label> <input type="number" class="form-control" id="quantity"
+					name="quantity" min="1" max="9999" value="1" required="required"/>
+				<p>
+					<input type="hidden" id="id" name="id" th:value="${poiuyt.id}" />
+				</p>
+				<p>
+					<input class="btn btn-lg btn-success float-right" type="submit"
+						value="Submit" />
+				</p>
+			</div>
+			<img alt="A generic Poiuyt image" th:src="@{/img/Poiuyt.png}" />
+			<p class="lead" th:text="${poiuyt.description}">The Poiuyt you
+				selected.</p>
 		</div>
-		<img alt="A generic Poiuyt image" th:src="@{/img/Poiuyt.png}" />
-		<p class="lead" th:text="${poiuyt.description}">The Poiuyt you
-			seleted.</p>
-	</div>
+	</form>
 
 	<!-- Example row of columns -->
 	<div class="row">

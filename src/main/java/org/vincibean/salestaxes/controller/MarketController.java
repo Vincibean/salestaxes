@@ -17,8 +17,17 @@
 
 package org.vincibean.salestaxes.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBException;
+
+import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +35,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.vincibean.salestaxes.domain.Poiuyt;
+import org.vincibean.salestaxes.generated.Receipt;
+import org.vincibean.salestaxes.jaxb.JaxbFactory;
 import org.vincibean.salestaxes.service.PoiuytService;
+import org.vincibean.salestaxes.service.ReceiptService;
 
 import com.google.common.base.Optional;
 
@@ -46,6 +58,11 @@ public class MarketController {
 
 	@Autowired
 	private PoiuytService poiuytService;
+
+	@Autowired
+	private ReceiptService receiptService;
+
+	private static final Logger logger = LoggerFactory.getLogger(MarketController.class);
 
 	/**
 	 * Get the web page describing the market page of FooBar market.
@@ -79,6 +96,34 @@ public class MarketController {
 			nextPage = "market/poiuyt_detail";
 		}
 		return nextPage;
+	}
+
+	@RequestMapping(value = "/export-receipt", method = RequestMethod.POST)
+	public void exportReceipt( 
+			@RequestParam(value="id") long poiuytId, 
+			@RequestParam(value="quantity", defaultValue="1") int quantity, 		
+			HttpServletResponse response){
+		try {
+			if(quantity <= 0){
+				return;
+			}
+			List<Poiuyt> poiuytList = new ArrayList<Poiuyt>();
+			Optional<Poiuyt> poiuyt = poiuytService.findPoiuytById(poiuytId);
+			if(!poiuyt.isPresent()){
+				return;
+			}
+			for(int i = 0; i < quantity; i++){
+				poiuytList.add(poiuyt.get());
+			}
+			// Marshal the ensuing Poiuyt object(s) and add it to the response as a XML file. 
+			response.setHeader("Pragma", "no-cache");
+			response.setHeader("Cache-Control", "no-cache");
+			response.setHeader("Content-Type", "application/xml");
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + "Foobar_Receipt_" + new DateTime().toString("yyyy-MM-dd") + ".xml\"");
+			JaxbFactory.createMarshaller(Receipt.class).get().marshal(receiptService.generateReceipt(poiuytList), response.getOutputStream());
+		} catch (JAXBException | IOException e) {
+			logger.error("An error has occurred while downloading Receipt file ", e);
+		}	
 	}
 
 }

@@ -23,6 +23,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -97,6 +98,119 @@ public class MarketControllerTest {
 					.andExpect(MockMvcResultMatchers.model().attributeExists("poiuyt"))
 					.andExpect(MockMvcResultMatchers.status().isOk())
 					.andExpect(MockMvcResultMatchers.view().name("market/poiuyt_detail"));
+		} catch (Exception e) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Test that requesting the poiuyt receipt xml content will behave as intended (no Exception will be thrown).
+	 * Post request.
+	 * Requesting with "/market/export-receipt".
+	 */
+	@Test
+	public void testExportReceipt(){
+		try {
+			mockMvc.perform(MockMvcRequestBuilders.post("/market/export-receipt")
+					.param("id", poiuytService
+							.findAllPoiuyts()
+							.iterator()
+							.next()
+							.getId()
+							.toString())
+							.param("quantity", "1"))
+							.andExpect(MockMvcResultMatchers.status().isOk())
+							.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_XML));
+		} catch (Exception e) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Test that requesting the poiuyt receipt xml content with the wrong HTTP request 
+	 * will return a client error in the 4xx range.
+	 * Get request.
+	 * Requesting with "/market/export-receipt".
+	 */
+	@Test
+	public void testExportReceiptWithGet(){
+		try {
+			mockMvc.perform(MockMvcRequestBuilders.get("/market/export-receipt")
+					.param("id", poiuytService
+							.findAllPoiuyts()
+							.iterator()
+							.next()
+							.getId()
+							.toString())
+							.param("quantity", "1"))
+							.andExpect(MockMvcResultMatchers.status().is4xxClientError());
+		} catch (Exception e) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Test that requesting the poiuyt receipt xml content with a not existing id 
+	 * will return an empty byte array.
+	 * Post request.
+	 * Requesting with "/market/export-receipt".
+	 */
+	@Test
+	public void testExportReceiptBadId(){
+		try {
+			mockMvc.perform(MockMvcRequestBuilders.post("/market/export-receipt")
+					.param("id", "" + Long.MAX_VALUE)
+					.param("quantity", "1"))
+					.andExpect(MockMvcResultMatchers.status().isOk())
+					.andExpect(MockMvcResultMatchers.content().bytes(new byte[0]));
+		} catch (Exception e) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Test that requesting the poiuyt receipt xml content with a quantity of 0 
+	 * will return an empty byte array.
+	 * Post request.
+	 * Requesting with "/market/export-receipt".
+	 */
+	@Test
+	public void testExportReceiptQuantity0(){
+		try {
+			mockMvc.perform(MockMvcRequestBuilders.post("/market/export-receipt")
+					.param("id", poiuytService
+							.findAllPoiuyts()
+							.iterator()
+							.next()
+							.getId()
+							.toString())
+							.param("quantity", "0"))
+							.andExpect(MockMvcResultMatchers.status().isOk())
+							.andExpect(MockMvcResultMatchers.content().bytes(new byte[0]));
+		} catch (Exception e) {
+			Assert.fail();
+		}
+	}
+
+	/**
+	 * Test that requesting the poiuyt receipt xml content with a negative quantity
+	 * will return an empty byte array.
+	 * Post request.
+	 * Requesting with "/market/export-receipt".
+	 */
+	@Test
+	public void testExportReceiptNegativeQuantity(){
+		try {
+			mockMvc.perform(MockMvcRequestBuilders.post("/market/export-receipt")
+					.param("id", poiuytService
+							.findAllPoiuyts()
+							.iterator()
+							.next()
+							.getId()
+							.toString())
+							.param("quantity", "-34"))
+							.andExpect(MockMvcResultMatchers.status().isOk())
+							.andExpect(MockMvcResultMatchers.content().bytes(new byte[0]));
 		} catch (Exception e) {
 			Assert.fail();
 		}
