@@ -66,7 +66,7 @@ public class ReceiptServiceTest {
 		Iterable<Poiuyt> poiuyts = poiuytService.findAllPoiuyts();
 		Receipt receipt = receiptService.generateReceipt(Lists.newArrayList(poiuyts));
 		assertNotNull(receipt);
-		assertEquals(receipt.getHeader().getTimeStamp().getDay(), new DateTime().getDayOfWeek());
+		assertEquals(receipt.getHeader().getTimeStamp().getDay(), new DateTime().getDayOfMonth());
 		assertEquals(receipt.getHeader().getIssuer(), "FooBar Market");
 		assertFalse(receipt.getPoiuyts().isEmpty());
 		assertTrue(receipt.getTotalBasePrices() > 0);
