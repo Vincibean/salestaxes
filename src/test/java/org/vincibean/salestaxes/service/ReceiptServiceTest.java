@@ -316,8 +316,8 @@ public class ReceiptServiceTest {
 	 */
 	private Category createSalesTaxesCategory(){
 		Category category = new Category();
-		category.setName(Category.SALES_TAXES_CATEGORY_NAME);
-		category.setDescription(Category.SALES_TAXES_CATEGORY_NAME);
+		category.setName("Sales Tax Good");
+		category.setDescription("Sales Tax Good");
 		category.setFee(createSalesTaxesFee());
 		return category;
 	}

@@ -84,8 +84,8 @@ public class PoiuytConverterTest {
 		
 		// Create a Sales Taxes Category.
 		Category category = new Category();
-		category.setName(Category.SALES_TAXES_CATEGORY_NAME);
-		category.setDescription(Category.SALES_TAXES_CATEGORY_NAME);
+		category.setName("Sales Tax Good");
+		category.setDescription("Sales Tax Good");
 		category.setFee(fee);
 		
 		// Create a music CD Poiuyt.
