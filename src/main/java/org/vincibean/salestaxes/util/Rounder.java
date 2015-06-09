@@ -29,7 +29,7 @@ public class Rounder {
 	 * Get the input number, rounded using the rounding logic of FooBar Market. 
 	 * Logic of FooBar Market is:
 	 * - the number is rounded to the 2nd digit after the decimal point;
-	 * - the number is rounded to the neared 0.05
+	 * - the number is rounded to the upper 0.05
 	 * E.g.:
 	 * Input: 7.0 ->
 	 * Output: 7.0
@@ -41,12 +41,14 @@ public class Rounder {
 	 * Output: 6.65
 	 * |
 	 * Input: 10.02 ->
-	 * Output: 10.0
+	 * Output: 10.5
 	 * @param number2round a double representing the number to be rounded.
 	 * @return the input number, rounded using the rounding logic of FooBar Market.
 	 */
 	public static double round(final double number2round) {
-		return Math.round(number2round * 20) / 20.0;
+		// Since 0.05 = 1/20, multiply all for 20, then apply Math.ceil (go to the neares integer),
+		// the divide again by 20.
+		return Math.ceil(number2round * 20) / 20.0;
 	}
 
 }

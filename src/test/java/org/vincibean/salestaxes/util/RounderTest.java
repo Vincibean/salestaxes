@@ -30,7 +30,7 @@ import org.junit.Test;
 public class RounderTest {
 
 	/**
-	 * Test that method round() will 7 is 7 is given.
+	 * Test that method round() will return 7 if 7 is given.
 	 */
 	@Test
 	public void testRound1(){
@@ -38,7 +38,7 @@ public class RounderTest {
 	}
 
 	/**
-	 * Test that method round() will 7.5 is 7.5 is given.
+	 * Test that method round() will return 7.5 if 7.5 is given.
 	 */
 	@Test
 	public void testRound2(){
@@ -46,7 +46,7 @@ public class RounderTest {
 	}
 
 	/**
-	 * Test that method round() will 6.65 is 6.63 is given.
+	 * Test that method round() will return 6.65 if 6.63 is given.
 	 */
 	@Test
 	public void testRound3(){
@@ -54,11 +54,11 @@ public class RounderTest {
 	}
 
 	/**
-	 * Test that method round() will 10.0 is 10.02 is given.
+	 * Test that method round() will return 10.05 if 10.02 is given.
 	 */
 	@Test
 	public void testRound4(){
-		assertEquals(10.0, Rounder.round(10.02), 0);
+		assertEquals(10.05, Rounder.round(10.02), 0);
 	}
 
 }

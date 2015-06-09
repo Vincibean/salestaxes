@@ -212,9 +212,9 @@ public class ReceiptServiceTest {
 	 *  - 1 imported bottle of perfume at 32.19,
 	 *  - 1 bottle of perfume at 20.89,
 	 *  - 1 packet of headache pills at 9.75,
-	 *  - 1 imported box chocolate at 11.85 (actually 11.80),
-	 *  Sales taxes: 6.70 (actually 6.65)
-	 *  Total: 74.68 (actually, 74.63)
+	 *  - 1 imported box chocolate at 11.85
+	 *  Sales taxes: 6.70
+	 *  Total: 74.68
 	 */
 	@Test
 	public void testGenerateReceipt3(){
@@ -274,7 +274,7 @@ public class ReceiptServiceTest {
 				priceTestResult = priceTestResult && new Double(9.75).equals(poiuyt.getFinalPrice());
 				break;
 			case IMPORTED_BOX_CHOCOLATES_NAME:
-				priceTestResult = priceTestResult && new Double(11.80).equals(poiuyt.getFinalPrice());
+				priceTestResult = priceTestResult && new Double(11.85).equals(poiuyt.getFinalPrice());
 				break;		
 			default:
 				fail("Unexpected Poiuyt found");
@@ -282,8 +282,8 @@ public class ReceiptServiceTest {
 			}
 		}
 		assertTrue(priceTestResult);
-		assertEquals(6.65, receipt.getTotalTaxes(), 0.01);
-		assertEquals(74.63, receipt.getGrandTotal(), 0.01);
+		assertEquals(6.70, receipt.getTotalTaxes(), 0.01);
+		assertEquals(74.68, receipt.getGrandTotal(), 0.01);
 	}
 
 	/**
